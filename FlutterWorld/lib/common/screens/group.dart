@@ -6,7 +6,7 @@ class GroupScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text("Available"),
+      child: Text("You Don't Have Group Chat"),
     );
   }
 }

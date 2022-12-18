@@ -10,6 +10,11 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Available"));
+    return ListView.builder(
+        padding: const EdgeInsets.all(8),
+        itemCount: ProjectConst.settingsText.length,
+        itemBuilder: (BuildContext context, int index) {
+          return SettingCard(index: index);
+        });
   }
 }

@@ -8,6 +8,14 @@ class PeopleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Available"));
+    return ListView.builder(
+        scrollDirection: Axis.vertical,
+        itemCount: ProjectConst.personName.length,
+        itemBuilder: (BuildContext context, int index) {
+          return ChatPersonCard(
+            imagesPath: ProjectConst.imagesPath[index],
+            personName: ProjectConst.personName[index],
+          );
+        });
   }
 }
