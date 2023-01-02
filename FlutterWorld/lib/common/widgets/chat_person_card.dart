@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_chat_app/common/screens/chat.dart';
+import 'package:responsive_chat_app/constants/ProjecConstants.dart';
 
 import '../../state_manegement/my_state.dart';
 import 'package:provider/provider.dart';
@@ -30,13 +31,17 @@ class ChatPersonCard extends StatelessWidget {
             provider.changeImage(imagesPath);
           }),
           child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 5.0),
+              decoration: BoxDecoration(
+                  color:
+                      //state management classındaki isim değeri burdaki değere eşitse rengi gri yap
+                      Provider.of<PersonInfo>(context, listen: true)
+                                  .personName ==
+                              personName
+                          ? ProjectConst.greyBackground
+                          : Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(5.0))),
               height: 60,
-              color:
-                  //state management classındaki isim değeri burdaki değere eşitse rengi gri yap
-                  Provider.of<PersonInfo>(context, listen: true).personName ==
-                          personName
-                      ? const Color.fromARGB(172, 211, 211, 211)
-                      : Colors.white,
               child: Row(
                 children: [
                   Container(
@@ -53,9 +58,10 @@ class ChatPersonCard extends StatelessWidget {
                     child: Container(
                       decoration: const BoxDecoration(
                           //üst ve alttaki borderlar
-                          border: Border(
+                          /*border: Border(
                               bottom:
-                                  BorderSide(color: Colors.grey, width: 0.2))),
+                                  BorderSide(color: Colors.grey, width: 0.2))*/
+                          ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +76,7 @@ class ChatPersonCard extends StatelessWidget {
                                   style: const TextStyle(
                                       fontWeight: FontWeight.w600),
                                 ),
-                                const Text("2:35pm")
+                                //const Text("2:35pm")
                               ],
                             ),
                           ),

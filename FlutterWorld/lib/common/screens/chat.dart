@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:chat_bubbles/chat_bubbles.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_chat_app/common/screens/user_info.dart';
+import 'package:responsive_chat_app/common/widgets/custom_message_bar.dart.dart';
 import 'package:responsive_chat_app/constants/ProjecConstants.dart';
 
 import '../../state_manegement/my_state.dart';
 
 class ChatScreen extends StatelessWidget {
-  final GlobalKey<ScaffoldState> _key = GlobalKey(); // Cre
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
+
+  ChatScreen({super.key}); // Cre
   @override
   Widget build(BuildContext context) {
-    final now = new DateTime.now();
+    final now = DateTime.now();
     var screenWidth = MediaQuery.of(context).size.width;
     var screenType = "";
     if (screenWidth < 625) {
@@ -31,30 +34,39 @@ class ChatScreen extends StatelessWidget {
       ),
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: Colors.blue, //change your color here
-        ),
-        bottom: PreferredSize(
-          preferredSize: Size.fromHeight(1.0),
-          child: Container(
-            color: Colors.grey,
-            height: 1.0,
-          ),
+          color: ProjectConst.iconsColor, //change your color here
         ),
         backgroundColor: ProjectConst.barColor,
-        elevation: 0,
+        elevation: 5,
         toolbarHeight: 50,
-        title: Text(
-          "${Provider.of<PersonInfo>(context, listen: true).personName},$screenType",
-          style: TextStyle(color: Colors.black),
+        title: Row(
+          children: [
+            Container(
+              //resimleri gösterdiğimiz widget
+              margin: const EdgeInsets.only(right: 5.0, left: 5.0),
+              width: 30,
+              height: 30,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                      image: AssetImage(
+                          Provider.of<PersonInfo>(context, listen: true)
+                              .personImage),
+                      fit: BoxFit.cover)),
+            ),
+            Text(
+              "${Provider.of<PersonInfo>(context, listen: true).personName},$screenType",
+              style: TextStyle(color: Colors.black, fontSize: 15),
+            ),
+          ],
         ),
-        centerTitle: true,
         actions: [
-          IconButton(
+          /* IconButton(
               onPressed: () {},
               icon: Icon(
                 Icons.phone_outlined,
                 color: Colors.blue,
-              )),
+              )),*/
           IconButton(
               onPressed: () {
                 //ekran genişliğine göre kullanıcı detay sayfasına yönlendirme yapar
@@ -75,7 +87,7 @@ class ChatScreen extends StatelessWidget {
                 }
               },
               icon: Icon(
-                Icons.info_outline,
+                Icons.more_horiz,
                 color: Colors.blue,
               )),
         ],
@@ -236,7 +248,8 @@ class ChatScreen extends StatelessWidget {
               ],
             ),
           ),
-          MessageBar(
+          const CustomMessageBar()
+          /*MessageBar(
             sendButtonColor: Colors.transparent,
             onSend: (_) => print(_),
             actions: [
@@ -252,7 +265,7 @@ class ChatScreen extends StatelessWidget {
                 onTap: () {},
               ),
             ],
-          ),
+          ),*/
         ],
       ),
     );

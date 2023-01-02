@@ -44,17 +44,18 @@ class ProjectConst {
   ];
 
   static List<String> personName = [
-    "Ryan O'Ruke",
-    "Alex Ristavski",
-    "Kate Stren",
-    "Gal Gadot",
-    "Joey Tribbian",
-    "Lucy",
-    "Juniour Bob",
-    "Alexa",
-    "Michel Jackson",
+    "Keyvan",
+    "Hamdican",
+    "Murat",
+    "Can",
+    "Ahmet",
+    "Ramazan",
+    "Ahmad",
+    "Berk",
+    "Mehmet",
   ];
 
-  static Color iconsColor = Colors.blue;
+  static Color iconsColor = Colors.black;
   static Color barColor = const Color.fromARGB(255, 250, 250, 250);
+  static Color greyBackground = const Color.fromRGBO(245, 245, 245, 1);
 }
